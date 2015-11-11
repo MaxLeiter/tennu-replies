@@ -121,13 +121,11 @@ module.exports = {
             privmsg: function (privmsg) {
                 var timer = Date.now();
                 var totalTime = timer - newTime;
-                console.log(totalTime);
                 if(totalTime > delay) {//add bracket
                     var splitMessage = privmsg.message.split(" ");
                     splitMessage.forEach(function(e, i, a) {
                         if(replies.get(e).is_ok) {
                             newTime = Date.now();
-                            console.log(getReply(e));
                             client.say(privmsg.channel, getReply(e).message);
                         }
                     });
@@ -138,7 +136,6 @@ module.exports = {
                 if (command.args.length === 0) {
                     return "No reply specified.";
                 }
-                console.log(command.args.join(" "));
                 return getReply(command.args.join(" "), true);
             },
 
